@@ -20,11 +20,9 @@ import { isAuthenticated } from "./controls/auth.js";
 
  
 dbConnection();
-app.get("/",(req,res)=>{
-    res.send("working fine")
-})
 
-app.use("/user",userRouter)
+
+app.use("/api",userRouter)
 app.use("/api",isAuthenticated,questionRouter)
 
 
