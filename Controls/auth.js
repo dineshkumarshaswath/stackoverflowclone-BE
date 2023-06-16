@@ -1,0 +1,42 @@
+
+import { User } from '../dbmodels/user.js';
+import jwt from "jsonwebtoken"
+
+
+
+export const isAuthenticated = async ( req, res,  next) => {
+
+    try {
+
+
+        if (req.headers) {
+            let token;
+            token = await req.headers["x-auth-token"]
+            if (!token) {
+                return res.status(400).json({ message: "access denied" })
+            } else {
+                const decode = jwt.verify(token, process.env.SECRETKEY);
+                req.user = await User.findById(decode.id).select('id name email')
+                console.log(req.user)
+                next()
+            }
+
+
+        }
+
+
+
+    } catch (error) {
+        console.log('server error', error)
+        return res.status(500).json({ message: 'internal server error' })
+
+    }
+
+
+
+
+
+}
+
+
+
