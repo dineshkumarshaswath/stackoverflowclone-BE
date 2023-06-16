@@ -7,14 +7,13 @@ import cors from 'cors'
 import { userRouter } from "./Routers/user.js";
 import { questionRouter } from "./Routers/question.js"
 import { isAuthenticated } from "./controls/auth.js";
-import dotenv from 'dotenv'
+
 
 
 
  const app= express()
  
- dotenv.config()
-  const PORT=process.env.PORT
+
   
  app.use(express.json())
  app.use(cors())
@@ -33,5 +32,5 @@ app.use("/api",isAuthenticated,questionRouter)
 
 
 
-app.listen(PORT,()=>console.log(`server connected localhost:${PORT}`))
+app.listen(7000,()=>console.log(`server connected localhost:7000`))
 

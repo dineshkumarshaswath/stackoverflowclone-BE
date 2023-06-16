@@ -15,7 +15,7 @@ export const isAuthenticated = async ( req, res,  next) => {
             if (!token) {
                 return res.status(400).json({ message: "access denied" })
             } else {
-                const decode = jwt.verify(token, process.env.SECRET_KEY);
+                const decode = jwt.verify(token, "heybuddycool");
                 req.user = await User.findById(decode.id).select('id name email')
                 console.log(req.user)
                 next()
