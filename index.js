@@ -9,9 +9,11 @@ import { questionRouter } from "./Routers/question.js"
 import { isAuthenticated } from "./controls/auth.js";
 import dotenv from 'dotenv'
 
-  dotenv.config()
+
 
  const app= express()
+ 
+ dotenv.config()
   const PORT=process.env.PORT
   
  app.use(express.json())
