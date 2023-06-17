@@ -4,7 +4,7 @@ import express from 'express'
 import cors from 'cors'
 import { userRouter } from "./Routers/user.js";
 import { questionRouter } from "./Routers/question.js"
-import { isAuthenticated } from "./controls/auth.js";
+import { isAuthenticated } from "./Controls/auth.js";
 import dontenv from 'dotenv'
 
 
