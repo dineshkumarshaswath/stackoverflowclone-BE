@@ -1,18 +1,19 @@
  
 import { dbConnection } from "./db.js";
-// import { User } from "./dbmodels/user.js";
-// import { Question } from "./dbmodels/question.js";
 import express from 'express'
 import cors from 'cors'
 import { userRouter } from "./Routers/user.js";
 import { questionRouter } from "./Routers/question.js"
 import { isAuthenticated } from "./controls/auth.js";
+import dontenv from 'dotenv'
 
 
 
 
  const app= express()
  
+ dontenv.config()
+ const PORT=process.env.PORT
 
   
  app.use(express.json())
@@ -22,7 +23,7 @@ import { isAuthenticated } from "./controls/auth.js";
 dbConnection();
 
 app.get("/",(req,res)=>{
-    res.send("working fine");
+     return res.send('server condition working fine')
 })
 app.use("/api",userRouter)
 app.use("/api",isAuthenticated,questionRouter)
@@ -32,5 +33,5 @@ app.use("/api",isAuthenticated,questionRouter)
 
 
 
-app.listen(7000,()=>console.log(`server connected localhost:7000`))
+app.listen(PORT,()=>console.log(`server connected localhost:${PORT}`))
 

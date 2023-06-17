@@ -31,7 +31,7 @@ router.post("/signup",async(req,res)=>{
 
      } catch (error) {
          console.log('server error',error)
-          res.status(500).json({message:'internal server error'})
+         return res.status(500).json({message:'internal server error'})
      }
     
 
@@ -53,14 +53,14 @@ router.post("/login",async(req,res)=>{
     }
     
      const token=generatejwttoken(user._id)
-    res.status(201).json({message:'successfully logged in ',token})
+      return  res.status(201).json({message:'successfully logged in ',token})
 
   
 
 
   } catch (error) {
     console.log('server error',error)
-     res.status(500).json({message:'internal server error'})
+      return  res.status(500).json({message:'internal server error'})
     
     
    }
