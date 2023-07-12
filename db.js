@@ -7,7 +7,7 @@ export function dbConnection(){
     }
 
     try {
-        mongoose.connect("mongodb+srv://dinesh:dinesh13@cluster0.fugkgn1.mongodb.net/dbdetails",params)
+        mongoose.connect("mongodb+srv://dineshkumar:dineshkumar@cluster0.c2ogjte.mongodb.net/stackoverclone",params)
         console.log("db connected successfully")
         
     } catch (error) {

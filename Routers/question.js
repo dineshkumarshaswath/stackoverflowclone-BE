@@ -5,19 +5,19 @@ import { Question } from '../dbmodels/question.js';
 
 const router=express.Router();
 
-router.get("/sample",async (req,res)=>{
-    const questions= await Question.find()
+router.get("/questionall",async (req,res)=>{
+    const questions= await Question.find().populate("user","id name")
   return  res.status(200).json({message:"get all datas",questions})
 })
 
-router.post("/question", async(req,res)=>{
+router.post("/postquestion", async(req,res)=>{
     try {
 
         const posteddate=new Date().toJSON().slice(0,10);
         const question =await new Question({
-            ...req.body,date:posteddate,user:req.user._id
+            ...req.body,firstName: req.user.name, date:posteddate,user:req.user._id
         }).save()
-        return res.status(201).json({message:"successfully added"})
+        return res.status(201).json({message:"successfully added",question})
         
     } catch (error) {
      console.log('server error',error)
@@ -62,4 +62,17 @@ router.delete("/delete/:id",async(req,res)=>{
 
 })
 
-export const questionRouter=router
+
+
+router.get("/userquestion",async(req,res)=>{
+    try {
+         const userquestion= await Question.find({user:req.user._id})
+     return res.status(200).json({message:"succeffuly got questions",userquestion})
+     
+    } catch (error) {
+     console.log('server error',error)
+     return  res.status(500).json({message:'internal server error'})  
+    }
+  })
+
+  export const questionRouter=router
