@@ -7,6 +7,11 @@ const answerSchema= new mongoose.Schema({
         type:String,
         required:true
     },
+    question:{
+        type:String,
+        required:true
+    },
+
     answer:{
         type:String,
         required:true
